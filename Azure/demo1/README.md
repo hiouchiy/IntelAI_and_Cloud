@@ -23,30 +23,31 @@
     - mkdir ~/.jupyter
     - cd ~/.jupyter/
     - openssl req -x509 -nodes -newkey rsa:2048 -keyout mycert.key -out mycert.pem
-        - Country Name (2 letter code) [AU]:JP
-        - State or Province Name (full name) [Some-State]:Tokyo
-        - Locality Name (eg, city) []:Shinjuku
-        - Organization Name (eg, company) [Internet Widgits Pty Ltd]:tech.c
-        - Organizational Unit Name (eg, section) []:ai
-        - Common Name (e.g. server FQDN or YOUR name) []:student
-        - Email Address []:hiouchiy@outlook.jp
+        - Country Name (2 letter code) [AU]:**JP**
+        - State or Province Name (full name) [Some-State]:**Tokyo**
+        - Locality Name (eg, city) []:**Shinjuku**
+        - Organization Name (eg, company) [Internet Widgits Pty Ltd]:**tech.c**
+        - Organizational Unit Name (eg, section) []:**ai**
+        - Common Name (e.g. server FQDN or YOUR name) []:**student**
+        - Email Address []:**皆さんのメールアドレス**
     - ipython3
         - from notebook.auth import passwd
         - passwd()
-            - Enter password: Passw0rd1234
-            - Verify password: Passw0rd1234
-            - Out[2]: 'sha1:87a95ecd40d0:b00b20378586662ef79700a820b4494ed3b57dbb'
+            - Enter password: **Passw0rd1234**
+            - Verify password: **Passw0rd1234**
+            - Out[2]: 'sha1:87a95ecd40d0:b00b2037・・・・'　というハッシュが生成される
             - In [3]: exit() 
     - touch ~/.jupyter/jupyter_notebook_config.py
     - vi ~/.jupyter/jupyter_notebook_config.py
-        - c = get_config()
-        - c.NotebookApp.ip = '*'
-        - c.NotebookApp.open_browser = False
-        - c.NotebookApp.port = 8080
-        - c.NotebookApp.password = 'sha1:87a95ecd40d0:b00b20378586662ef79700a820b4494ed3b57dbb'
-        - c.NotebookApp.certfile = '/home/hiouchiy/.jupyter/mycert.pem'
-        - c.NotebookApp.keyfile = '/home/hiouchiy/.jupyter/mycert.key'
-1. OpenVINOのインストール
+        - 以下の内容を記述(iで入力モード)し、保存(Esc押下後、:wqで上書き保存)
+            c = get_config()
+            c.NotebookApp.ip = '*'
+            c.NotebookApp.open_browser = False
+            c.NotebookApp.port = 8080
+            c.NotebookApp.password = 'sha1:87a95ecd40d0:b00b2037・・・・'
+            c.NotebookApp.certfile = '/home/hiouchiy/.jupyter/mycert.pem'
+            c.NotebookApp.keyfile = '/home/hiouchiy/.jupyter/mycert.key'
+1. OpenVINOのインストール（参照元：https://docs.openvinotoolkit.org/latest/_docs_install_guides_installing_openvino_linux.html）
     - wget http://registrationcenter-download.intel.com/akdlm/irc_nas/16057/l_openvino_toolkit_p_2019.3.376.tgz
     - tar -xvzf l_openvino_toolkit_p_2019.3.376.tgz
     - cd l_openvino_toolkit_p_2019.3.376/
@@ -72,7 +73,7 @@
     - pip3 install pandas --user
     - pip3 install matplotlib --user
     - pip3 install keras --user
-1. このレポジトリをダウンロード
+1. 本レポジトリをダウンロード
     - mkdir ~/notebook
     - cd ~/notebook/
     - git clone https://github.com/hiouchiy/IntelAI_and_Cloud.git
@@ -83,13 +84,3 @@
 1. ローカルPCのWebブラウザを起動し、アドレス欄に「https://AzureVMのパブリックIPアドレス:8080 」と入力
 1. Jupyter Notebookのポータル画面にて「IntelAI_and_Cloud/Azure/demo1/AzureCognitiveService_and_OpenVINO_Collaboration.ipynb」をクリックして起動
 1. あとはNotebookに従って進める
-
-## 動かし方
-- git clone https://github.com/hiouchiy/OpenVINO_Sample.git
-- cd OpenVINO_Sample
-- OpenVINOの環境変数周りのセットアップ
-    - Windows: "C:\Program Files (x86)\IntelSWTools\openvino\bin\setupvars.bat"
-    - Ubuntu: source /opt/intel/openvino/bin/setupvars.sh
-- jupyter notebook
-- Jupyter Notebookのポータル画面にて「AzureCognitiveService_and_OpenVINO_Collaboration.ipynb」をクリックして起動
-- あとはNotebookに従って進める
