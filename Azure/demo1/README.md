@@ -40,13 +40,13 @@
     - touch ~/.jupyter/jupyter_notebook_config.py
     - vi ~/.jupyter/jupyter_notebook_config.py
         - 以下の内容を記述(iで入力モード)し、保存(Esc押下後、:wqで上書き保存)
-            c = get_config()
-            c.NotebookApp.ip = '*'
-            c.NotebookApp.open_browser = False
-            c.NotebookApp.port = 8080
-            c.NotebookApp.password = 'sha1:87a95ecd40d0:b00b2037・・・・'
-            c.NotebookApp.certfile = '/home/hiouchiy/.jupyter/mycert.pem'
-            c.NotebookApp.keyfile = '/home/hiouchiy/.jupyter/mycert.key'
+            - c = get_config()
+            - c.NotebookApp.ip = '*'
+            - c.NotebookApp.open_browser = False
+            - c.NotebookApp.port = 8080
+            - c.NotebookApp.password = 'sha1:87a95ecd40d0:b00b2037・・・・'
+            - c.NotebookApp.certfile = '/home/hiouchiy/.jupyter/mycert.pem'
+            - c.NotebookApp.keyfile = '/home/hiouchiy/.jupyter/mycert.key'
 1. OpenVINOのインストール（参照元：https://docs.openvinotoolkit.org/latest/_docs_install_guides_installing_openvino_linux.html）
     - wget http://registrationcenter-download.intel.com/akdlm/irc_nas/16057/l_openvino_toolkit_p_2019.3.376.tgz
     - tar -xvzf l_openvino_toolkit_p_2019.3.376.tgz
