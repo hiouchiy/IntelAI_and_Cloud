@@ -1,0 +1,15 @@
+from azure.cognitiveservices.vision.customvision.prediction import CustomVisionPredictionClient
+
+# Now there is a trained endpoint that can be used to make a prediction
+ENDPOINT = 'https://hiouchiycustomvisi-prediction.cognitiveservices.azure.com/'
+prediction_key = '4db7a68df7014fc18023c7888e5ad27e'
+predictor = CustomVisionPredictionClient(prediction_key, endpoint=ENDPOINT)
+
+with open(base_image_url + "images/Test/test_image.jpg", "rb") as image_contents:
+    results = predictor.classify_image(
+        project.id, publish_iteration_name, image_contents.read())
+
+    # Display the results.
+    for prediction in results.predictions:
+        print("\t" + prediction.tag_name +
+              ": {0:.2f}%".format(prediction.probability * 100))
