@@ -1,4 +1,3 @@
-# 【Azure AIとIntel AIコラボ企画】
 # Azure Custom Visionでモデルを作って、OpenVINOで高速推論するサンプル ~サーバーサイド編~
 
 ## 前提条件
