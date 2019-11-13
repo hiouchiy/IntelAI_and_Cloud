@@ -1,5 +1,0 @@
-# Data files and directories common in repo root
-train/
-val/
-.ipynb_checkpoints/
-__pycache__/
