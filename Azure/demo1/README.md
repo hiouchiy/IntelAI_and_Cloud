@@ -86,3 +86,12 @@
 1. ローカルPCのWebブラウザを起動し、アドレス欄に「https://AzureVMのパブリックIPアドレス:8080 」と入力
 1. Jupyter Notebookのポータル画面にて「IntelAI_and_Cloud/Azure/demo1/AzureCognitiveService_and_OpenVINO_Collaboration.ipynb」をクリックして起動
 1. あとはNotebookに従って進める
+
+## おまけ
+1. Intel Tensorflowをインストールする
+    - pip3 uninstall tensorflow
+    - pip3 install intel-tensorflow==1.14.0 --user
+1. Jupyter Notebookを停止
+    - kill 該当するプロセスID
+1. Jupyter Notebookを再起動
+    - nohup jupyter notebook > /dev/null 2>&1 &
