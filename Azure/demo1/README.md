@@ -75,6 +75,7 @@
     - pip3 install pandas --user
     - pip3 install matplotlib --user
     - pip3 install scipy --user
+    - pip3 install tensorflow==1.14.0 --user
     - sudo apt-get install unzip
 1. 本レポジトリをダウンロード
     - mkdir ~/notebook
