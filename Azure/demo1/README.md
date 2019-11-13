@@ -1,5 +1,5 @@
 # 【Azure AIとIntel AIコラボ企画】
-# Azure Custom Visionでモデルを作って、OpenVINOで高速推論するサンプル
+# Azure Custom Visionでモデルを作って、OpenVINOで高速推論するサンプル ~サーバーサイド編~
 
 ## 前提条件
 - Python 3.6以上
@@ -36,7 +36,7 @@
         - passwd()
             - Enter password: **Passw0rd1234**
             - Verify password: **Passw0rd1234**
-            - Out[2]: 'sha1:87a95ecd40d0:b00b2037・・・・'　というハッシュが生成される
+            - Out[2]: 'sha1:87a95ecd40d0:b00b2037・・・・'　というハッシュが生成されるのメモ帳などにコピーしておく
             - In [3]: exit() 
     - touch ~/.jupyter/jupyter_notebook_config.py
     - vi ~/.jupyter/jupyter_notebook_config.py
@@ -45,7 +45,7 @@
             - c.NotebookApp.ip = '*'
             - c.NotebookApp.open_browser = False
             - c.NotebookApp.port = 8080
-            - c.NotebookApp.password = 'sha1:87a95ecd40d0:b00b2037・・・・'   ←上で作成されたハッシュを貼り付け
+            - c.NotebookApp.password = 'sha1:87a95ecd40d0:b00b2037・・・・'   　←上で作成されたハッシュを貼り付け
             - c.NotebookApp.certfile = '/home/ai/.jupyter/mycert.pem'
             - c.NotebookApp.keyfile = '/home/ai/.jupyter/mycert.key'
     - cd ..
