@@ -15,6 +15,7 @@
     - mkdir tools
     - cd tools
     - curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
+    - sudo apt-get update
     - sudo apt-get install python3-distutils
     - sudo python3 get-pip.py
     - cd ..
@@ -44,11 +45,12 @@
             - c.NotebookApp.ip = '*'
             - c.NotebookApp.open_browser = False
             - c.NotebookApp.port = 8080
-            - c.NotebookApp.password = 'sha1:87a95ecd40d0:b00b2037・・・・'
-            - c.NotebookApp.certfile = '/home/hiouchiy/.jupyter/mycert.pem'
-            - c.NotebookApp.keyfile = '/home/hiouchiy/.jupyter/mycert.key'
+            - c.NotebookApp.password = 'sha1:87a95ecd40d0:b00b2037・・・・'   ←上で作成されたハッシュを貼り付け
+            - c.NotebookApp.certfile = '/home/ai/.jupyter/mycert.pem'
+            - c.NotebookApp.keyfile = '/home/ai/.jupyter/mycert.key'
+    - cd ..
 1. OpenVINOのインストール（参照元：https://docs.openvinotoolkit.org/latest/_docs_install_guides_installing_openvino_linux.html）
-    - wget http://registrationcenter-download.intel.com/akdlm/irc_nas/16057/l_openvino_toolkit_p_2019.3.376.tgz
+    - wget https://cs298395642e8d6x4498x8b7.blob.core.windows.net/share/l_openvino_toolkit_p_2019.3.376.tgz
     - tar -xvzf l_openvino_toolkit_p_2019.3.376.tgz
     - cd l_openvino_toolkit_p_2019.3.376/
     - sudo ./install.sh
@@ -72,14 +74,13 @@
     - pip3 install pillow --user
     - pip3 install pandas --user
     - pip3 install matplotlib --user
-    - pip3 install keras --user
+    - pip3 install scipy --user
+    - sudo apt-get install unzip
 1. 本レポジトリをダウンロード
     - mkdir ~/notebook
     - cd ~/notebook/
     - git clone https://github.com/hiouchiy/IntelAI_and_Cloud.git
 1. Jupyter Notebookを起動
-    - jupyter notebook & 
-    - または 
     - nohup jupyter notebook > /dev/null 2>&1 &
 1. ローカルPCのWebブラウザを起動し、アドレス欄に「https://AzureVMのパブリックIPアドレス:8080 」と入力
 1. Jupyter Notebookのポータル画面にて「IntelAI_and_Cloud/Azure/demo1/AzureCognitiveService_and_OpenVINO_Collaboration.ipynb」をクリックして起動
