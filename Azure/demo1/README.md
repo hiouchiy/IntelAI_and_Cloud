@@ -1,17 +1,17 @@
 # 【Intel AI × Azure AI】 Azure Custom Visionでモデルを作って、OpenVINOで高速推論する
-これはIntelのAI技術とクラウド技術のコラボレーション企画です。
-ご存じの通り、Intelのサーバー向けCPUであるXeonはパブリッククラウドのインフラ基盤として多く利用されています。
-そのXeonが近年ディープラーニングワークロードに対して急速にキャッチアップをしており、Xeonだけでも相当な性能が実現できるようになっております。
-さらに、モデルの推論フェーズがクラウド側からエッジ側へとシフトしているという実情も鑑み、Intelのコンシューマ向けCPUであるCore i3/i5/i7においても性能向上が可能となっております。
-そして、AI開発、特にモデルの開発に欠かせないものがクラウドです。限られた期間の中で膨大なパターンを志向しなければならない学習フェーズにおいて、実質無限のコンピュートリソースをオンデマンドに活用できるクラウドの特性は非常に相性がよく、かつ、近年はモデル開発のための便利なツールも充実してきている点から生産性という意味でも存在感が高まっており、AIエンジニアにとって必須の学習対象になりえます。
+これはIntelのAI技術とクラウド技術のコラボレーションコンテンツです。
+ご存じの通り、Intelのサーバー向けCPUであるXeonはパブリッククラウドのインフラ基盤として多くのクラウドベンダーに利用されております。
+そんなXeonですが、近年はディープラーニングワークロードに対して急速にキャッチアップを進めており、最近はXeonのみであっても相当な性能が実現できるようになっています。
+さらに、モデルの推論処理がクラウド側からエッジ側へとシフトしているという実情も鑑み、Intelのコンシューマ向けCPUであるCore i3/i5/i7においても性能の向上が可能となっております。
+そして、AI開発、特にモデルの開発に欠かせないものがクラウドです。限られた期間の中で膨大なパターンを志向しなければならない学習フェーズにおいて、実質無限のコンピュートリソースをオンデマンドに活用できるクラウドの特性は非常に相性がよく、かつ、近年はモデル開発のための便利なツールも充実してきている点から生産性向上という意味でもその存在感が高まっており、現代のAIエンジニアにとっては必須の学習項目であると考えられます。
 
-そういったわけで、このレッスンでは、クラウドを使ってモデルを作成し、そのモデルをクラウド上、および、オンプレミス上（PC上）で推論するという、一連の流れをご体験いただきます。
+そういったわけで、このレッスンでは、クラウドを使ってモデルを作成し、そのモデルをクラウド上（Xeon上）、および、オンプレミス上（Core上）で推論するという、一連の流れをご体験いただきます。
 クラウドプラットフォームとして、今回はMicrosoft Azureを使用します。かつ、あらゆる環境（インテルのCPU）においてモデルの推論を高速化するためのツールとしてIntel OpneVINO™　ツールキットを使用します。
 
 - Microsoft Azure：https://azure.microsoft.com/ja-jp/
 - Intel OpneVINO™　ツールキット：https://www.intel.co.jp/content/www/jp/ja/internet-of-things/solution-briefs/openvino-toolkit-product-brief.html
 
-## 前提条件
+## ソフトウェア前提条件
 - OS: Windows 10/Ubuntu 18.04にて動作確認
 - Python 3.6以上
 - Tensorflow 1.14.0
@@ -22,7 +22,6 @@
 ## 環境構築方法(Azure Linux VM編)
 1. [Azure Portal](https://portal.azure.com/)へログインする
 1. Azure VMをセットアップする
-    
     - [こちら](azurevm_setup_instructions.pdf)の通りに実施ください
 1. PIP3のインストール（参照元は[ここ](https://oji-cloud.net/2019/06/16/post-2216/)）
     - mkdir tools
@@ -100,7 +99,6 @@
     - cd ~/notebook/
     - git clone https://github.com/hiouchiy/IntelAI_and_Cloud.git
 1. Jupyter Notebookを起動
-    
     - nohup jupyter notebook > /dev/null 2>&1 &
 1. ローカルPCのWebブラウザを起動し、アドレス欄に「https://AzureVMのパブリックIPアドレス:8080 」と入力
 1. Jupyter Notebookのポータル画面にて[Lesson1_AzureCognitiveService_and_OpenVINO_Collaboration.ipynb](Lesson1_AzureCognitiveService_and_OpenVINO_Collaboration.ipynb)をクリックして起動
@@ -159,5 +157,4 @@
         ```
     - python gaze3.py
 1. Azure上で作成した犬猫分類モデルをこのWindows10の環境で動かす
-	
-	- やってみましょう
+    - やってみましょう
