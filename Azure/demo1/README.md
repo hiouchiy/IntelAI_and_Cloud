@@ -22,6 +22,7 @@
 ## 環境構築方法(Azure Linux VM編)
 1. [Azure Portal](https://portal.azure.com/)へログインする
 1. Azure VMをセットアップする
+    
     - [こちら](azurevm_setup_instructions.pdf)の通りに実施ください
 1. PIP3のインストール（参照元は[ここ](https://oji-cloud.net/2019/06/16/post-2216/)）
     - mkdir tools
@@ -52,7 +53,7 @@
             - In [3]: exit() 
     - touch ~/.jupyter/jupyter_notebook_config.py
     - vi ~/.jupyter/jupyter_notebook_config.py
-        (※)viというのはLinuxにLinuxに搭載されているテキストエディタです。操作方法がやや独特ですが、Linuxを使う上では必須ツールなので、これを機にマスターしましょう。
+        - (※viというのはLinuxにLinuxに搭載されているテキストエディタです。操作方法がやや独特ですが、Linuxを使う上では必須ツールなので、これを機にマスターしましょう。)
 		- キーボードの「i」を押すと、入力モードに切り替わるので、以下の内容を記述してください。記述後は、ESCを押して入力モードを完了し、「:wq」の順番で押すことで上書き保存されます。
             ```python
             c = get_config()
@@ -99,6 +100,7 @@
     - cd ~/notebook/
     - git clone https://github.com/hiouchiy/IntelAI_and_Cloud.git
 1. Jupyter Notebookを起動
+    
     - nohup jupyter notebook > /dev/null 2>&1 &
 1. ローカルPCのWebブラウザを起動し、アドレス欄に「https://AzureVMのパブリックIPアドレス:8080 」と入力
 1. Jupyter Notebookのポータル画面にて[Lesson1_AzureCognitiveService_and_OpenVINO_Collaboration.ipynb](Lesson1_AzureCognitiveService_and_OpenVINO_Collaboration.ipynb)をクリックして起動
@@ -157,4 +159,5 @@
         ```
     - python gaze3.py
 1. Azure上で作成した犬猫分類モデルをこのWindows10の環境で動かす
+    
     - やってみましょう
