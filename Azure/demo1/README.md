@@ -137,15 +137,13 @@
         ```python
 #Absolute Path for CPU Extension lib is needed
 cpu_ext = "C:\\tmp\\cpu_extension_avx2.dll"
-
 #Absolute Path for downloaded pre-trained model root folder is needed
 model_base_path = 'C:\\tmp\\Transportation' 
-
-        #Paths for each model
+#Paths for each model
 model_det = model_base_path+'\\face-detection-adas-0001\\FP32\\face-detection-adas-0001'
-        model_hp = model_base_path+'\\head-pose-estimation-adas-0001\\FP32\\head-pose-estimation-adas-0001'
-        model_gaze = model_base_path+'\\gaze-estimation-adas-0002\\FP32\\gaze-estimation-adas-0002'
-        model_landmark = model_base_path+'\\facial-landmarks-35-adas-0002\\FP32\\facial-landmarks-35-adas-0002'
+model_hp = model_base_path+'\\head-pose-estimation-adas-0001\\FP32\\head-pose-estimation-adas-0001'
+model_gaze = model_base_path+'\\gaze-estimation-adas-0002\\FP32\\gaze-estimation-adas-0002'
+model_landmark = model_base_path+'\\facial-landmarks-35-adas-0002\\FP32\\facial-landmarks-35-adas-0002'
         ```
         
     - python gaze3.py
