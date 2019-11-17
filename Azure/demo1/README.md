@@ -75,7 +75,8 @@
     - pip3 install pandas --user
     - pip3 install matplotlib --user
     - pip3 install scipy --user
-    - pip3 install tensorflow==1.14.0 --user
+    - pip3 uninstall tensorflow
+    - pip3 install intel-tensorflow==1.14.0 --user
     - sudo apt-get install unzip
 1. 本レポジトリをダウンロード
     - mkdir ~/notebook
@@ -87,11 +88,52 @@
 1. Jupyter Notebookのポータル画面にて[Lesson1_AzureCognitiveService_and_OpenVINO_Collaboration.ipynb](Lesson1_AzureCognitiveService_and_OpenVINO_Collaboration.ipynb)をクリックして起動
 1. あとはNotebookに従って進める
 
-## おまけ
-1. Intel Tensorflowをインストールする
-    - pip3 uninstall tensorflow
-    - pip3 install intel-tensorflow==1.14.0 --user
+### おまけ（Tensorflowの置き換え）
+1. Intel版のTensorflowをアンインストールし、OSS版のTensorflowをインストールする
+    - pip3 uninstall intel-tensorflow
+    - pip3 install tensorflow==1.14.0 --user
 1. Jupyter Notebookを停止
     - kill 該当するプロセスID
 1. Jupyter Notebookを再起動
     - nohup jupyter notebook > /dev/null 2>&1 &
+
+## 環境構築方法(Windows 10編)
+1. Python3をインストールする
+    - [こちら](install_python3_on_win10.pdf)の通りに実施ください
+1. OpenVINO™ ツールキットをインストールする
+    - [こちら](install_openvino_on_win10.pdf)の通りに実施ください。
+1. コマンドプロンプトを開き、下記コマンドにてライブラリを追加インストールする。
+    - pip3 install pillow --user
+    - pip3 install pandas --user
+    - pip3 install matplotlib --user
+    - pip install numpy --user
+    - pip install scipy --user
+    - pip install opencv-python --user
+1. コマンドプロンプトを一度閉じ、再度コマンドプロンプトを開き、下記コマンドを実行
+    - "C:\Program Files (x86)\IntelSWTools\openvino\bin\setupvars.bat"
+
+### Windows 10上でOpenVINO™ ツールキットのサンプルを動かしてみる
+1. 顔検出デモの動かし方
+    - mkdir openvino_sample
+    - cd openvino_sample
+    - python "C:\Program Files (x86)\IntelSWTools\openvino\deployment_tools\tools\model_downloader\downloader.py" --name face-detection-retail-0004
+    - python "C:\Program Files (x86)\IntelSWTools\openvino\deployment_tools\tools\model_downloader\downloader.py" --name face-detection-adas-0001
+    - python "C:\Program Files (x86)\IntelSWTools\openvino\deployment_tools\tools\model_downloader\downloader.py" --name landmarks-regression-retail-0009
+    - python "C:\Program Files (x86)\IntelSWTools\openvino\deployment_tools\tools\model_downloader\downloader.py" --name face-reidentification-retail-0095
+    - python "C:\Program Files (x86)\IntelSWTools\openvino\deployment_tools\inference_engine\demos\python_demos\face_recognition_demo\face_recognition_demo.py" -m_fd intel\face-detection-adas-0001\FP32\face-detection-adas-0001.xml -m_lm intel\landmarks-regression-retail-0009\FP32\landmarks-regression-retail-0009.xml -m_reid intel\face-reidentification-retail-0095\FP32\face-reidentification-retail-0095.xml -fg . -l "C:\Program Files (x86)\IntelSWTools\openvino\deployment_tools\inference_engine\bin\intel64\Release\cpu_extension_avx2.dll"
+1. 目からビームデモの動かし方
+    - python "C:\Program Files (x86)\IntelSWTools\openvino\deployment_tools\tools\model_downloader\downloader.py" --name head-pose-estimation-adas-0001
+    - python "C:\Program Files (x86)\IntelSWTools\openvino\deployment_tools\tools\model_downloader\downloader.py" --name gaze-estimation-adas-0002
+    - python "C:\Program Files (x86)\IntelSWTools\openvino\deployment_tools\tools\model_downloader\downloader.py" --name facial-landmarks-35-adas-0002
+    - [この](https://github.com/hiouchiy/OpenVINO_Sample/blob/master/demo1/gaze3.py)からスクリプトをダウンロード
+    - スクリプトの下記部分を実際のフォルダーパスで更新
+    ```
+cpu_ext = "C:\\tmp\\cpu_extension.dll" #Absolute Path for CPU Extension lib is needed
+model_base_path= 'C:\\tmp\\Transportation' #Absolute Path for downloaded pre-trained model root folder is needed
+model_det      = model_base_path+'\\object_detection\\face\\pruned_mobilenet_reduced_ssd_shared_weights\\dldt\\FP32\\face-detection-adas-0001'
+model_hp       = model_base_path+'\\object_attributes\\headpose\\vanilla_cnn\\dldt\\FP32\\head-pose-estimation-adas-0001'
+model_gaze     = model_base_path+'\\object_attributes\\gaze\\custom-architecture\\dldt\\FP32\\gaze-estimation-adas-0002'
+model_landmark = model_base_path+'\\object_attributes\\facial_landmarks\\custom-35-facial-landmarks\\dldt\\FP32\\facial-landmarks-35-adas-0002'
+    ```
+
+    - python gaze3.py
