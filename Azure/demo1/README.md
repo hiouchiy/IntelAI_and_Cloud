@@ -115,6 +115,7 @@
     - pip install numpy --user
     - pip install scipy --user
     - pip install opencv-python --user
+    - pip install tensorflow==1.14.0 --user
 1. コマンドプロンプトを一度閉じ、再度コマンドプロンプトを開き、下記コマンドを実行
     - "C:\Program Files (x86)\IntelSWTools\openvino\bin\setupvars.bat"
 
