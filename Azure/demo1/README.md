@@ -41,13 +41,18 @@
     - touch ~/.jupyter/jupyter_notebook_config.py
     - vi ~/.jupyter/jupyter_notebook_config.py
         - 以下の内容を記述(iで入力モード)し、保存(Esc押下後、:wqで上書き保存)
-            - c = get_config()
-            - c.NotebookApp.ip = '*'
-            - c.NotebookApp.open_browser = False
-            - c.NotebookApp.port = 8080
-            - c.NotebookApp.password = 'sha1:87a95ecd40d0:b00b2037・・・・'   　←上で作成されたハッシュを貼り付け
-            - c.NotebookApp.certfile = '/home/ai/.jupyter/mycert.pem'
-            - c.NotebookApp.keyfile = '/home/ai/.jupyter/mycert.key'
+            ```python
+            c = get_config()
+            c.NotebookApp.ip = '*'
+            c.NotebookApp.open_browser = False
+            c.NotebookApp.port = 8080
+            c.NotebookApp.password = 'sha1:87a95ecd40d0:b00b2037・・・・'
+            #↑こちらには上の操作で生成されたハッシュ値を貼り付ける
+            c.NotebookApp.certfile = '/home/ai/.jupyter/mycert.pem'
+            c.NotebookApp.keyfile = '/home/ai/.jupyter/mycert.key'
+            ```
+            
+        
     - cd ..
 1. OpenVINOのインストール（参照元：https://docs.openvinotoolkit.org/latest/_docs_install_guides_installing_openvino_linux.html）
     - wget https://cs298395642e8d6x4498x8b7.blob.core.windows.net/share/l_openvino_toolkit_p_2019.3.376.tgz
@@ -83,6 +88,7 @@
     - cd ~/notebook/
     - git clone https://github.com/hiouchiy/IntelAI_and_Cloud.git
 1. Jupyter Notebookを起動
+   
     - nohup jupyter notebook > /dev/null 2>&1 &
 1. ローカルPCのWebブラウザを起動し、アドレス欄に「https://AzureVMのパブリックIPアドレス:8080 」と入力
 1. Jupyter Notebookのポータル画面にて[Lesson1_AzureCognitiveService_and_OpenVINO_Collaboration.ipynb](Lesson1_AzureCognitiveService_and_OpenVINO_Collaboration.ipynb)をクリックして起動
@@ -103,9 +109,9 @@
 1. OpenVINO™ ツールキットをインストールする
     - [こちら](install_openvino_on_win10.pdf)の通りに実施ください。
 1. コマンドプロンプトを開き、下記コマンドにてライブラリを追加インストールする。
-    - pip3 install pillow --user
-    - pip3 install pandas --user
-    - pip3 install matplotlib --user
+    - pip install pillow --user
+    - pip install pandas --user
+    - pip install matplotlib --user
     - pip install numpy --user
     - pip install scipy --user
     - pip install opencv-python --user
@@ -125,15 +131,20 @@
     - python "C:\Program Files (x86)\IntelSWTools\openvino\deployment_tools\tools\model_downloader\downloader.py" --name head-pose-estimation-adas-0001
     - python "C:\Program Files (x86)\IntelSWTools\openvino\deployment_tools\tools\model_downloader\downloader.py" --name gaze-estimation-adas-0002
     - python "C:\Program Files (x86)\IntelSWTools\openvino\deployment_tools\tools\model_downloader\downloader.py" --name facial-landmarks-35-adas-0002
-    - [この](https://github.com/hiouchiy/OpenVINO_Sample/blob/master/demo1/gaze3.py)からスクリプトをダウンロード
-    - スクリプトの下記部分を実際のフォルダーパスで更新
-    ```
-cpu_ext = "C:\\tmp\\cpu_extension.dll" #Absolute Path for CPU Extension lib is needed
-model_base_path= 'C:\\tmp\\Transportation' #Absolute Path for downloaded pre-trained model root folder is needed
-model_det      = model_base_path+'\\object_detection\\face\\pruned_mobilenet_reduced_ssd_shared_weights\\dldt\\FP32\\face-detection-adas-0001'
-model_hp       = model_base_path+'\\object_attributes\\headpose\\vanilla_cnn\\dldt\\FP32\\head-pose-estimation-adas-0001'
-model_gaze     = model_base_path+'\\object_attributes\\gaze\\custom-architecture\\dldt\\FP32\\gaze-estimation-adas-0002'
-model_landmark = model_base_path+'\\object_attributes\\facial_landmarks\\custom-35-facial-landmarks\\dldt\\FP32\\facial-landmarks-35-adas-0002'
-    ```
+    - [ここ](https://github.com/hiouchiy/OpenVINO_Sample/blob/master/demo1/gaze3.py)からスクリプトをダウンロードし、gaze3.pyというファイル名で保存
+    - スクリプトのうち、下記の部分を実際のフォルダーパスで更新
+        ```python
+#Absolute Path for CPU Extension lib is needed
+cpu_ext = "C:\\tmp\\cpu_extension_avx2.dll"
 
+#Absolute Path for downloaded pre-trained model root folder is needed
+model_base_path = 'C:\\tmp\\Transportation' 
+
+        #Paths for each model
+model_det = model_base_path+'\\face-detection-adas-0001\\FP32\\face-detection-adas-0001'
+        model_hp = model_base_path+'\\head-pose-estimation-adas-0001\\FP32\\head-pose-estimation-adas-0001'
+        model_gaze = model_base_path+'\\gaze-estimation-adas-0002\\FP32\\gaze-estimation-adas-0002'
+        model_landmark = model_base_path+'\\facial-landmarks-35-adas-0002\\FP32\\facial-landmarks-35-adas-0002'
+        ```
+        
     - python gaze3.py
