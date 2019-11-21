@@ -24,6 +24,7 @@
 1. Azure VMをセットアップする
     
     - [こちら](azurevm_setup_instructions.pdf)の通りに実施ください
+    - 以降の操作はAzure Cloud Shell（Bash）上で実施ください
 1. PIP3のインストール（参照元は[ここ](https://oji-cloud.net/2019/06/16/post-2216/)）
     - mkdir tools
     - cd tools
