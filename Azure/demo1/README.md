@@ -120,17 +120,21 @@
     - [こちら](install_python3_on_win10.pdf)の通りに実施ください
 1. OpenVINO™ ツールキットをインストールする
     - [こちら](install_openvino_on_win10.pdf)の通りに実施ください。
-1. コマンドプロンプトを開き、下記コマンドにてライブラリを追加インストールする。
-    - pip install requests --user
-    - pip install pillow --user
-    - pip install pandas --user
-    - pip install matplotlib --user
-    - pip install numpy --user
-    - pip install scipy --user
-    - pip install pyyaml --user
-    - pip install jupyter --user
-    - pip install tensorflow==1.14.0 --user
-1. コマンドプロンプトを一度閉じ、再度コマンドプロンプトを開き、下記コマンドを実行
+1. Pythonの仮想環境を作成する
+    - コマンドプロンプトを起動する
+    - python -m venv intelaienv
+    - call intelaienv\Scripts\activate
+1. 続いて、下記コマンドを順に実行し、ライブラリをインストールする。
+    - pip install jupyter
+    - pip install requests
+    - pip install pillow
+    - pip install pandas
+    - pip install matplotlib
+    - pip install numpy
+    - pip install scipy
+    - pip install pyyaml
+    - pip install tensorflow==1.14.0
+1. 下記コマンドを実行
     - "C:\Program Files (x86)\IntelSWTools\openvino\bin\setupvars.bat"
 
 ### Windows 10上でOpenVINO™ ツールキットのサンプルを動かしてみる
@@ -163,3 +167,6 @@
 1. Azure上で作成した犬猫分類モデルをこのWindows10の環境で動かす
    
     - やってみましょう
+1. （おまけ）Pythonの仮想環境を削除する
+    - call intelaienv\Scripts\deactivate
+    - python -m venv --clear intelaienv
