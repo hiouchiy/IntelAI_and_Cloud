@@ -39,8 +39,8 @@
     - openssl req -x509 -nodes -newkey rsa:2048 -keyout mycert.key -out mycert.pem
         - Country Name (2 letter code) [AU]:**JP**
         - State or Province Name (full name) [Some-State]:**Tokyo**
-        - Locality Name (eg, city) []:**Shinjuku**
-        - Organization Name (eg, company) [Internet Widgits Pty Ltd]:**tech.c**
+        - Locality Name (eg, city) []:**Yurakucho**
+        - Organization Name (eg, company) [Internet Widgits Pty Ltd]:**intel**
         - Organizational Unit Name (eg, section) []:**ai**
         - Common Name (e.g. server FQDN or YOUR name) []:**student**
         - Email Address []:**皆さんのメールアドレス**
