@@ -139,7 +139,7 @@
     - pip install scipy
     - pip install pyyaml
     - pip install tensorflow==1.14.0
-      pip install keras
+    - pip install keras
 1. 下記コマンドを実行
     - "C:\Program Files (x86)\IntelSWTools\openvino\bin\setupvars.bat"
 
