@@ -93,7 +93,7 @@
     - pip3 install pandas --user
     - pip3 install matplotlib --user
     - pip3 install scipy --user
-    - pip3 uninstall tensorflow
+    - sudo pip3 uninstall tensorflow
     - pip3 install intel-tensorflow==1.14.0 --user
     - sudo apt-get install unzip
 1. 本レポジトリをダウンロード
@@ -123,8 +123,12 @@
     - [こちら](install_openvino_on_win10.pdf)の通りに実施ください。
 1. Pythonの仮想環境を作成する
     - コマンドプロンプトを起動する
-    - python -m venv intelaienv
-    - call intelaienv\Scripts\activate
+    - python -m venv intelai
+    - call intelai\Scripts\activate
+1. または、Anacondaの仮想環境を作成する
+    - コマンドプロンプトを起動する
+    - conda create -n intelai python=3.6 anaconda
+    - conda activate intelai
 1. 続いて、下記コマンドを順に実行し、ライブラリをインストールする。
     - pip install jupyter
     - pip install requests
@@ -135,6 +139,7 @@
     - pip install scipy
     - pip install pyyaml
     - pip install tensorflow==1.14.0
+      pip install keras
 1. 下記コマンドを実行
     - "C:\Program Files (x86)\IntelSWTools\openvino\bin\setupvars.bat"
 
