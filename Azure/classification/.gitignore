@@ -1,0 +1,17 @@
+# Data files and directories common in repo root
+AzureCognitiveService_and_OpenVINO_Collaboration_DRAFT.ipynb
+.ipynb_checkpoints/
+__pycache__/
+#labels.txt
+model.bin
+model.fp16.bin
+model.fp16.mapping
+model.fp16.xml
+model.mapping
+#model.pb
+model.xml
+#Lesson1_AzureCognitiveService_and_OpenVINO_Collaboration.ipynb
+#Lesson2-1_Training_MobileNet_with_Keras+Tensorflow.ipynb
+#Lesson2-2_Inference_MobileNet_with_OpenVINO.ipynb
+train_data/
+tf_model/
