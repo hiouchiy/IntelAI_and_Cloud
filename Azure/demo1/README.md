@@ -19,7 +19,33 @@
 - Intel OpenVINO™ ツールキット 2019R3.1以上
 - その他必要なPythonライブラリは手順の中に記載
 
-## 環境構築方法(Azure Linux VM編)
+## 環境構築方法 簡単バージョン(Azure Linux VM編)
+1. [Azure Portal](https://portal.azure.com/)へログインする
+1. Azure VMをセットアップする
+   
+    - [こちら](azurevm_setup_instructions.pdf)の通りに実施ください
+    - 以降の操作はAzure Cloud Shell（Bash）上で実施ください
+1. Dockerのインストール（参照元は[ここ](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04)）
+    - sudo apt update
+    - sudo apt install apt-transport-https ca-certificates curl software-properties-common
+    - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+    - sudo apt update
+    - apt-cache policy docker-ce
+    - sudo apt install docker-ce
+    - sudo usermod -aG docker ${USER}
+    - su - ${USER}
+    - id -nG
+    - sudo usermod -aG docker username
+1. Dockerイメージのダウンロードと実行
+    - docker pull hiouchiy/openvino2019r3.1-configured-on-cpu
+    - docker run -it -p 8080:8080 hiouchiy/openvino2019r3.1-configured-on-cpu /bin/bash
+    - nohup jupyter notebook --ip 0.0.0.0 --allow-root > /dev/null 2>&1 &
+1. ローカルPCのWebブラウザを起動し、アドレス欄に「https://AzureVMのパブリックIPアドレス:8080 」と入力
+1. Jupyter Notebookのポータル画面にて[Lesson1_AzureCognitiveService_and_OpenVINO_Collaboration.ipynb](Lesson1_AzureCognitiveService_and_OpenVINO_Collaboration.ipynb)をクリックして起動
+1. あとはNotebookに従って進める
+
+## 環境構築方法 フルバージョン(Azure Linux VM編)
 1. [Azure Portal](https://portal.azure.com/)へログインする
 1. Azure VMをセットアップする
    
