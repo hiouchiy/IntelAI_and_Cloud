@@ -14,6 +14,7 @@
 ## ソフトウェア前提条件
 - OS: Windows 10/Ubuntu 18.04にて動作確認
 - Python 3.6以上
+- pip 19.1.1 以下
 - Tensorflow 1.14.0
 - Jupyter Notebook
 - Intel OpenVINO™ ツールキット 2019R3.1以上
@@ -59,7 +60,7 @@ Dockerを使用して簡単に環境を構築する方法です。環境構築�
     - curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
     - sudo apt-get update
     - sudo apt-get install python3-distutils
-    - sudo python3 get-pip.py
+    - sudo python3 get-pip.py --pip==19.1.1
     - cd ..
 1. Jupyter Notebookのインストール（参照元は[ここ](https://qiita.com/JIwatani/items/ae1acb0878610fef3da8)）
     - sudo pip3 install jupyter
