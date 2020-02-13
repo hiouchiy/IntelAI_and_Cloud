@@ -37,7 +37,7 @@ Dockerを使用して簡単に環境を構築する方法です。環境構築�
     - sudo usermod -aG docker ${USER}
     - su - ${USER}
     - id -nG
-    - sudo usermod -aG docker username
+    - sudo usermod -aG docker ai
 1. Dockerイメージのダウンロードと実行
     - docker pull hiouchiy/openvino2019r3.1-configured-on-cpu
     - docker run -it -p 8080:8080 hiouchiy/openvino2019r3.1-configured-on-cpu /bin/bash
