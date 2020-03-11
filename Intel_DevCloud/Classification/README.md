@@ -11,6 +11,9 @@
 1. Welcome.ipynbの内容に則って操作をします。
  
 # 独自モデルの実行方法
-1. [Welcome_ouchiyama.ipynb](Welcome_ouchiyama.ipynb)をご参照ください。
+1. OpenVINOのベンチマークツールを使用する方法【おすすめ】
+    - [Benchmark_OpenVINO.ipynb](Benchmark_OpenVINO.ipynb)をご参照ください。
+1. 独自のベンチマークスクリプトを使用する方法
+    - [Welcome_ouchiyama.ipynb](Welcome_ouchiyama.ipynb)をご参照ください。
 
 
