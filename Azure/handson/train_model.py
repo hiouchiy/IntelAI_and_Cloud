@@ -45,7 +45,7 @@ from tensorflow.keras import backend as K
 import tensorflow as tf
 import os
 
-NUM_PARALLEL_EXEC_UNITS = 2
+NUM_PARALLEL_EXEC_UNITS = 24
 
 #Set Performance Parameters for MKL and Tensorflow using Keras backend
 #TensorFlow
@@ -64,8 +64,8 @@ os.environ["KMP_SETTINGS"] = "1"
 os.environ["KMP_AFFINITY"]= "granularity=fine,verbose,compact,1,0"
 
 
-# Initialize mobilenet with transfer learning
-base_model = applications.MobileNet(weights='imagenet', 
+# Initialize resnet50 with transfer learning
+base_model = applications.ResNet50(weights='imagenet', 
                                 include_top=False, 
                                 input_shape=(WIDTH, HEIGHT,3))
 
@@ -91,7 +91,7 @@ model.summary()
 
 
 import math
-top_layers_file_path="mobilenet.hdf5"
+top_layers_file_path="resnet50.hdf5"
 
 checkpoint = ModelCheckpoint(top_layers_file_path, monitor='loss', verbose=1, save_best_only=True, mode='min')
 tb = TensorBoard(log_dir='./logs', batch_size=val_flow.batch_size, write_graph=True, update_freq='batch')
@@ -118,7 +118,7 @@ print("Top 5: ", top_5)
 
 
 label = [k for k,v in train_flow.class_indices.items()]
-with open('mn-labels.txt', 'w+') as file:
+with open('labels.txt', 'w+') as file:
     file.write("\n".join(label))
 	
 
@@ -127,7 +127,7 @@ from tensorflow.python.framework import graph_util
 from tensorflow.python.framework import graph_io
 
 input_model_path = top_layers_file_path
-output_model_name = "mobilenet.pb"
+output_model_name = "resnet50.pb"
 output_model_dir = "tf_model"
 
 K.set_learning_phase(0)

@@ -18,7 +18,7 @@ class Model(object):
 
     def __init__(self):
         self.labels = []
-        labels_filename = "mn-labels.txt"
+        labels_filename = "labels.txt"
 
         # Create a list of labels.
         with open(labels_filename, 'rt') as lf:
@@ -205,7 +205,7 @@ class OpenVINOModel(Model):
 
         # Print the highest probability label
         predictions = predictions[self.out_blob]
-        highest_probability_index = predictions[0].argsort()[-1:][::-1]
+        highest_probability_index = predictions[0].argsort()[-1:][::-1][0]
 
         total_time = time.time() - start1
 
@@ -230,7 +230,7 @@ def run_inference(modelFile, model_type="tf", target_device='CPU', total=500):
     list_df = pd.DataFrame( columns=['正解ラベル','予測ラベル','全処理時間(msec)','推論時間(msec)'] )
 
     #file_list = glob.glob(os.path.join(dataset_dir, "*"))
-	file_list = glob.glob("train_data/test/*/*")
+    file_list = glob.glob("train_data/test/*/*")
     for i in range(total):
         img_path = random.choice(file_list)
         img_cat = os.path.split(os.path.dirname(img_path))[1]
