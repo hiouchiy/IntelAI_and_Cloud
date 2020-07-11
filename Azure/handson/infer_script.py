@@ -18,12 +18,12 @@ class Model(object):
 
     def __init__(self):
         self.labels = []
-        labels_filename = "labels.txt"
+        labels_filename = "mn-labels.txt"
 
         # Create a list of labels.
-#        with open(labels_filename, 'rt') as lf:
-#            for l in lf:
-#                self.labels.append(l.strip())
+        with open(labels_filename, 'rt') as lf:
+            for l in lf:
+                self.labels.append(l.strip())
 
     def predict(self, imageFile):
         raise NotImplementedError
@@ -137,8 +137,7 @@ class TFModel(Model):
         highest_probability_index = np.argmax(predictions)
         total_time = time.time() - start1
         
-        #return total_time, infer_time, self.labels[highest_probability_index], frame  #ここ追加
-        return total_time, infer_time, "", frame  #ここ追加
+        return total_time, infer_time, self.labels[highest_probability_index], frame  #ここ追加
 
 class OpenVINOModel(Model):
 
@@ -205,15 +204,15 @@ class OpenVINOModel(Model):
         infer_time = time.time() - start2
 
         # Print the highest probability label
-#        predictions = predictions[self.out_blob]
-#        highest_probability_index = predictions[0].argsort()[-1:][::-1]
+        predictions = predictions[self.out_blob]
+        highest_probability_index = predictions[0].argsort()[-1:][::-1]
 
         total_time = time.time() - start1
 
-        return total_time, infer_time, "", frame  #ここ追加
+        return total_time, infer_time, self.labels[highest_probability_index], frame  #ここ追加
 
 
-def run_inference(modelFile, model_type="tf", target_device='CPU', dataset_dir=".", total=500):
+def run_inference(modelFile, model_type="tf", target_device='CPU', total=500):
     if model_type == 'tf':
         model = TFModel(modelFile)
     elif model_type == 'tf_int8':
@@ -230,7 +229,8 @@ def run_inference(modelFile, model_type="tf", target_device='CPU', dataset_dir="
     total_spent_time = 0
     list_df = pd.DataFrame( columns=['正解ラベル','予測ラベル','全処理時間(msec)','推論時間(msec)'] )
 
-    file_list = glob.glob(os.path.join(dataset_dir, "*"))
+    #file_list = glob.glob(os.path.join(dataset_dir, "*"))
+	file_list = glob.glob("train_data/test/*/*")
     for i in range(total):
         img_path = random.choice(file_list)
         img_cat = os.path.split(os.path.dirname(img_path))[1]
@@ -261,23 +261,16 @@ if __name__ == '__main__':
                         help="Run on OpenVINO IE")
     parser.add_argument("--num_images",
                         help="Number of images to be infered",type=int, default=50)
-    parser.add_argument("--dataset_dir",
-                        help="Dataset dir", default=None)
     args = parser.parse_args()
     
     if args.input_graph:
         model_file = args.input_graph
     else:
         sys.exit("Please provide a graph file.")
-
-    if args.dataset_dir:
-        dataset_dir = args.dataset_dir
-    else:
-        sys.exit("Please provide a dataset dir.")
     
     model_type = 'tf'
     if args.openvino:
         model_type = 'openvino'
 
     print('Starting inference...')
-    tf_total_time, tf_infer_time = run_inference(model_file, model_type=model_type, dataset_dir=dataset_dir, total=args.num_images)
+    tf_total_time, tf_infer_time = run_inference(model_file, model_type=model_type, total=args.num_images)
