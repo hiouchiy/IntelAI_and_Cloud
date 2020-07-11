@@ -268,7 +268,7 @@ def main():
             if key == esc_code:
                 break
 
-        cv2.imwrite("frame_"+input_source, frame)
+        cv2.imwrite("after_"+input_source, frame)
 
     cv2.destroyAllWindows()
     cap.release()
