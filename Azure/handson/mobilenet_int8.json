@@ -1,0 +1,54 @@
+{
+    "model": {
+        "model_name": "mobilenet_int8",
+        "model": "mobilenet.xml",
+        "weights": "mobilenet.bin"
+    },
+    "engine": {
+        "launchers": [
+            {
+                "framework": "dlsdk",
+                "device": "CPU",
+                "adapter": "classification"
+            }
+        ],
+        "datasets": [{
+            "name": "classification_dataset",
+            "data_source": "./train_data/val/*",
+            "annotation_conversion": {
+                  "converter": "imagenet",
+                  "annotation_file": "./val.txt"
+            },
+            "reader": "pillow_imread",
+            "preprocessing":[
+                {
+                    "type": "bgr_to_rgb"
+                },
+                {
+                    "use_pillow": true,
+                    "type": "resize",
+                    "size": 256,
+                    "interpolation": "BILINEAR",
+                    "aspect_ratio_scale": "greater"
+                },
+                {
+                    "type": "crop",
+                    "size": 224,
+                    "use_pillow": true
+                }
+            ]
+        }]
+    },
+    "compression": {
+        "target_device": "CPU",
+        "algorithms": [
+            {
+                "name": "DefaultQuantization",
+                "params": {
+                    "preset": "performance",
+                    "stat_subset_size": 1000
+                }
+            }
+        ]
+    }
+}
