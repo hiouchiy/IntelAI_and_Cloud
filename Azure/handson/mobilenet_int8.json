@@ -14,7 +14,7 @@
         ],
         "datasets": [{
             "name": "classification_dataset",
-            "data_source": "./train_data/val/*",
+            "data_source": "./train_data/quantization",
             "annotation_conversion": {
                   "converter": "imagenet",
                   "annotation_file": "./val.txt"
