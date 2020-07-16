@@ -254,7 +254,7 @@ def run_inference(modelFile, model_type="tf", target_device='CPU', total=500):
     print()
     print("平均処理時間: " + str(int((total_spent_time / (total-1))*1000.0)) + " ms/枚")
     print("平均推論時間: " + str(int((total_infer_spent_time / (total-1))*1000.0)) + " ms/枚")
-	print("正解率: " + str(match / total * 100.0))
+    print("正解率: " + str(match / total * 100.0))
     return int((total_spent_time / (total-1))*1000.0), int((total_infer_spent_time / (total-1))*1000.0)
 
 if __name__ == '__main__':
