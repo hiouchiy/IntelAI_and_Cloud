@@ -229,6 +229,7 @@ def run_inference(modelFile, model_type="tf", target_device='CPU', total=500):
     total_spent_time = 0
     list_df = pd.DataFrame( columns=['正解ラベル','予測ラベル','全処理時間(msec)','推論時間(msec)'] )
 
+    match = 0
     #file_list = glob.glob(os.path.join(dataset_dir, "*"))
     file_list = glob.glob("train_data/test/*/*")
     for i in range(total):
@@ -240,6 +241,9 @@ def run_inference(modelFile, model_type="tf", target_device='CPU', total=500):
             total_infer_spent_time += infer_time
             total_spent_time += total_time
 
+        if img_cat == pred_label:
+            match = match + 1
+
         print(img_path, str(int(total_time*1000.0)) + 'msec', str(int(infer_time*1000.0)) + 'msec', pred_label) #ここ追加
 
         tmp_se = pd.Series( [img_cat, pred_label, str(int(total_time * 1000)), str(int(infer_time * 1000)) ], index=list_df.columns )
@@ -250,7 +254,7 @@ def run_inference(modelFile, model_type="tf", target_device='CPU', total=500):
     print()
     print("平均処理時間: " + str(int((total_spent_time / (total-1))*1000.0)) + " ms/枚")
     print("平均推論時間: " + str(int((total_infer_spent_time / (total-1))*1000.0)) + " ms/枚")
-
+	print("正解率: " + str(match / total * 100.0))
     return int((total_spent_time / (total-1))*1000.0), int((total_infer_spent_time / (total-1))*1000.0)
 
 if __name__ == '__main__':
